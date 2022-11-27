@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		sum[i] += row[i]*vector[i];
 
 	// recibe el vector suma
-	MPI_Gather(&sum,N,MPI_INT,A,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Gather(&sum,N,MPI_INT,A,N*N,MPI_INT,0,MPI_COMM_WORLD);
 
 	if(rank == 0)
 	{
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 				printf("\n");
 			printf("%d ",A[i]);
 		}
+		printf("\n");
 	}
 
 	MPI_Finalize();
