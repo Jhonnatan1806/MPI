@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 		for( int i = 0; i<N; i++)
 			vector[i] = rand()%64 +1;
 		// enviar filas de A
-		MPI_Scatter(&A,N,MPI_INT,row,1,MPI_INT,0,MPI_COMM_WORLD);
+		MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
 	}
 	//imprimo matrices en cada 
 	for( int i = 0; i<N*N; i++)
