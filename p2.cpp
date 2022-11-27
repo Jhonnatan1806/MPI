@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	
-	int A[N*N], B[N*N], vector[N], row[N], sum[N];
+	int A[N*N], B[N][N], vector[N], row[N], sum[N];
 	
 	if(rank == 0)
 	{
@@ -36,18 +36,8 @@ int main(int argc, char **argv)
 		sum[i] += row[i]*vector[i];
 
 	// recibe el vector suma
-	MPI_Gather(&sum,N,MPI_INT,B,N,MPI_INT,0,MPI_COMM_WORLD);
+	//MPI_Gather(&sum,N,MPI_INT,B,N,MPI_INT,0,MPI_COMM_WORLD);
 
-	if(rank == 0)
-	{
-		for(int i = 0; i<N*N; i++)
-		{
-			if(i%N == 0)
-				printf("\n");
-			printf("%d ",B[i]);
-		}
-		printf("\n");
-	}
 
 	MPI_Finalize();
 }
