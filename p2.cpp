@@ -8,12 +8,12 @@
 int main(int argc, char **argv) 
 {
 	int rank, size;
-	int A[N*N];
-	int vector[N];
+	
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
-	int row[N];
+	int A[N][N];
+	int vector[N],row[N];
 	if(rank == 0)
 	{
 		// obtenemos los valores de A
@@ -23,9 +23,10 @@ int main(int argc, char **argv)
 		// obtenemos los valores de v
 		for( int i = 0; i<N; i++)
 			vector[i] = rand()%64 +1;
-		// enviar filas de A
-		MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
 	}
+
+	// enviar filas de A
+	MPI_Scatter(&A,N,MPI_INT,row,0,MPI_INT,0,MPI_COMM_WORLD);
 	//imprimo matrices en cada 
 	for( int i = 0; i<N*N; i++)
 		printf("%d ",row[i]);
