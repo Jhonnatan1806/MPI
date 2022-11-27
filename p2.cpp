@@ -8,7 +8,7 @@
 int main(int argc, char **argv) 
 {
 	int rank, size;
-	int matrix[N][N];
+	int matrix[N*N];
 	int vector[N];
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -17,14 +17,15 @@ int main(int argc, char **argv)
 	{
 		// obtenemos los valores de A
 		srand(time(NULL));
-		for( int i = 0; i<N; i++)
-			for( int j = 0; j<N; j++)
-				matrix[i][j] = rand()%64 + 1;
+		for( int i = 0; i<N*N; i++)
+			matrix[i] = i;//rand()%64 + 1;
 		// obtenemos los valores de v
 		for( int i = 0; i<N; i++)
 			vector[i] = rand()%64 +1;
-		// enviar filas
+		// enviar filas 
 	}
-	printf("Matriz %d\n",matrix[0]);
+	for( int i = 0; i<N*N; i++)
+		printf("%d ",matrix[i]);
+	printf("\n");
 	MPI_Finalize();
 }
