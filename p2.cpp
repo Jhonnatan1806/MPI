@@ -19,11 +19,11 @@ int main(int argc, char **argv)
 	if(rank == 0)
 	{
 		srand(time(NULL));
-		// obtenemos los valores de A
+		// generamos los valores de A
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
 				A[i][j] = rand()%64 + 1;
-		// obtenemos los valores de v
+		// generamos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 	}
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// Scatter p0 envia las filas de A a p1,p2,... 
-	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// realizamos las sumas locales en p1,p2,...
 	printf("Rank %d: ",rank);
