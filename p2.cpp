@@ -38,6 +38,11 @@ int main(int argc, char **argv)
 	for(int i = 0; i<N; i++)
 		sum += row[i]*vector[i];
 
+	printf("Vector\n");
+		for(int i = 0; i<N; i++)
+			printf("%d ", vector[i]);
+		printf("\n");
+
 	// Gather
 	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
 
