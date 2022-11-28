@@ -19,13 +19,23 @@ int main(int argc, char **argv)
 	if(rank == 0)
 	{
 		srand(time(NULL));
-		// obtenemos los valores de v
-		for(int i = 0; i<N; i++)
-			vector[i] = rand()%4 +1;
 		// obtenemos los valores de A
+		printf("Matriz A\n");
 		for(int i = 0; i<N; i++)
+		{
 			for(int j = 0; j<N; j++)
-				A[i][j] = i+j;//rand()%64 + 1;
+			{
+				A[i][j] = rand()%64 + 1;
+				printf("%d ", A[i][j]);
+			}
+		}
+		// obtenemos los valores de v
+		printf("\nVector v\n");
+		for(int i = 0; i<N; i++)
+		{
+			vector[i] = rand()%4 +1;
+			printf("%d ", vector[i]);
+		}
 	}
 
 	// Broadcast
@@ -43,17 +53,6 @@ int main(int argc, char **argv)
 
 	if(rank == 0)
 	{
-		printf("Matriz A\n");
-		for(int i = 0; i<N; i++)
-			{
-			for(int j = 0; j<N; j++)
-				printf("%d ", A[i][j]);
-			printf("\n");
-			}
-		printf("Vector v\n");
-		for(int i = 0; i<N; i++)
-			printf("%d ", vector[i]);
-		printf("\n");
 		printf("A.v\n");
 		for(int i = 0; i<N; i++)
 			printf("%d ", x[i]);
