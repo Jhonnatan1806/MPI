@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 		srand(time(NULL));
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
-				A[i][j] = j;//rand()%64 + 1;
+				A[i][j] = i+j;//rand()%64 + 1;
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
 	for(int i = 0; i<N; i++)
 		printf("%d ", row[i]);
-	
+
 	printf("\n");
 
 	// recibe el vector suma
