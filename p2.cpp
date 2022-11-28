@@ -26,6 +26,10 @@ int main(int argc, char **argv)
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
+		printf("Vector\n");
+		for(int i = 0; i<N; i++)
+			printf("%d ", vector[i]);
+		printf("\n");
 	}
 
 	// Scatter 
@@ -39,7 +43,7 @@ int main(int argc, char **argv)
 		sum += row[i]*vector[i];
 
 	// Gather
-	MPI_Gather(&sum,1,MPI_INT,x,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	if(rank == 0)
 	{
@@ -50,10 +54,7 @@ int main(int argc, char **argv)
 				printf("%d ", A[i][j]);
 			printf("\n");
 			}
-		printf("Vector\n");
-		for(int i = 0; i<N; i++)
-			printf("%d ", vector[i]);
-		printf("\n");
+		
 		printf("AxVector\n");
 		for(int i = 0; i<N; i++)
 			printf("%d ", x[i]);
