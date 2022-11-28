@@ -25,20 +25,30 @@ int main(int argc, char **argv)
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
+		// temporal
+		for(int i = 0; i<N; i++)
+			{
+			for(int j = 0; j<N; j++)
+				printf("%d ", A[i][j]);
+			printf("\n");
+			}
+		for(int i = 0; i<N; i++)
+			printf("%d ", vector[i]);
+		printf("\n");
 	}
 
-	// enviar datos del array A tomados de N en N
+	// Scatter 
 	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
 
-	// enviar datos del vector
+	// Broadcast
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	//for(int i = 0; i<N; i++)
 		//sum[i] += row[i]*vector[i];
 
+	printf("%d ", rank);
 	for(int i = 0; i<N; i++)
 		printf("%d ", row[i]);
-
 	printf("\n");
 
 	// recibe el vector suma
