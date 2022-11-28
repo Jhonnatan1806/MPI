@@ -59,10 +59,10 @@ int main(int argc, char **argv)
 	// Imprimir el vector x[] en p0
 	if(rank == 0)
 	{
-		/*printf("x = [ ");
+		printf("x = [ ");
 		for (int i = 0; i<N; i++)
         	printf("%d ", x[i]);
-        printf("]\n");*/
+        printf("]\n");
         printf("Tiempo Comm Bcast: %f\n",t1);
         printf("Tiempo Comm Scatter: %f\n",t2);
         printf("Tiempo Comm Gather: %f\n",t3);
