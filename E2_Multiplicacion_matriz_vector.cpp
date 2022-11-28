@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <time.h>
 
-# define N 16
+# define N 32
 
 int main(int argc, char **argv) 
 {
