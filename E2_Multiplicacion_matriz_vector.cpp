@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	int A[N][N], row[N/size][N];
 	int vector[N], sum[N/size], x[N];
 	
+	tp = MPI_Wtime();
 	if(rank == 0)
 	{
 		srand(time(NULL));
@@ -29,7 +30,8 @@ int main(int argc, char **argv)
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 	}
-
+	tp = MPI_Wtime() - tp;
+	
 	// Broadcast p0 envia el vector v hacia p1,p2,...
 	t1 = MPI_Wtime();
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
@@ -41,7 +43,7 @@ int main(int argc, char **argv)
 	MPI_Scatter(&A,(N/size)*N,MPI_INT,row,(N/size)*N,MPI_INT,0,MPI_COMM_WORLD);
 	t2 = MPI_Wtime() - t2;
 
-	tp = MPI_Wtime(); 
+	tp = tp + MPI_Wtime(); 
 	// realizamos las sumas locales en p1,p2,...
 	for(int i = 0; i<(N/size); i++)
 	{
