@@ -26,12 +26,14 @@ int main(int argc, char **argv)
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 		// temporal
+		printf("Matriz A\n");
 		for(int i = 0; i<N; i++)
 			{
 			for(int j = 0; j<N; j++)
 				printf("%d ", A[i][j]);
 			printf("\n");
 			}
+		printf("Vector\n");
 		for(int i = 0; i<N; i++)
 			printf("%d ", vector[i]);
 		printf("\n");
@@ -46,7 +48,7 @@ int main(int argc, char **argv)
 	//for(int i = 0; i<N; i++)
 		//sum[i] += row[i]*vector[i];
 
-	printf("%d ", rank);
+	printf("Rank %d: ", rank);
 	for(int i = 0; i<N; i++)
 		printf("%d ", row[i]);
 	printf("\n");
