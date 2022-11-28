@@ -15,9 +15,8 @@ int main(int argc, char **argv)
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	
 	double t1, t2, t3, tp;
-	int A[N][N]; 
-	int vector[N], row[N/size][N], x[N];
-	int sum[N/size];
+	int A[N][N], row[N/size][N];
+	int vector[N], sum[N/size], x[N];
 	
 	if(rank == 0)
 	{
@@ -48,13 +47,13 @@ int main(int argc, char **argv)
 	{
 		sum[i]=0;
 		for(int j = 0; j<N; j++)
-			{sum[i] += row[i][j]*vector[j];printf("sum %d:",sum[i]);}
+			sum[i] += row[i][j]*vector[j];
 	}
 	tp = MPI_Wtime() - tp; 
 
 	// Gather p0 almacena las sumas locales en el array X
 	t3 = MPI_Wtime(); 
-	//MPI_Gather(&sum,(N/size),MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Gather(&sum,(N/size),MPI_INT,x,(N/size),MPI_INT,0,MPI_COMM_WORLD);
 	t3 = MPI_Wtime() - t3; 
 
 	// Imprimir el vector x[] en p0
