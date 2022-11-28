@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	{
 		// obtenemos los valores de A
 		srand(time(NULL));
-		for(int i = 0; i<N*N; i++)
+		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
 				A[i][j] = j;//rand()%64 + 1;
 		// obtenemos los valores de v
