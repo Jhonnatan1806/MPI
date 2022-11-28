@@ -35,18 +35,19 @@ int main(int argc, char **argv)
 	MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// realizamos las sumas locales en p1,p2,...
-	printf("Rank %d: ",rank);
 	for(int i = 0; i<N; i++)
-	{
 		sum += row[i]*vector[i];
-		if (i != 0)
-			printf("+");
-		printf("(%d)(%d)",row[i],vector[i]);
-	}
-	printf(" = %d\n",sum);
 
 	// Gather p0 almacena las sumas locales en el array X
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
+
+	if(rank == 0)
+	{
+		printf("x = ( ");
+		for (int i : x)
+        	printf("%d ", i);
+        printf(")\n");
+	}
 
 	MPI_Finalize();
 }
