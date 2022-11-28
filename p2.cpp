@@ -37,6 +37,7 @@ int main(int argc, char **argv)
 			vector[i] = rand()%4 +1;
 			printf("%d ", vector[i]);
 		}
+		printf("\n");
 	}
 
 	// Broadcast
