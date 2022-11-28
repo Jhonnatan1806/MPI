@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 
 	for(int i = 0; i<N; i++)
 		printf("%d ", row[i]);
+	
 	printf("\n");
 
 	// recibe el vector suma
