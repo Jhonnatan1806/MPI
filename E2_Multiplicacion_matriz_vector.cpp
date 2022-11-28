@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	
 	const int N = size;
 
-	double t1, t2, t3;
+	double t1, t2, t3, tp;
 	int A[N][N], vector[N], row[N], x[N];
 	int sum=0;
 	
@@ -33,21 +33,23 @@ int main(int argc, char **argv)
 	// Broadcast p0 envia el vector v a p1,p2,...
 	t1 = MPI_Wtime();
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
-	t1 = MPI_Wtime()-t1;
+	t1 = MPI_Wtime() - t1;
 
 	// Scatter p0 envia las filas de A a p1,p2,...
 	t2 = MPI_Wtime(); 
 	MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
-	t2 = MPI_Wtime()-t2;
+	t2 = MPI_Wtime() - t2;
 
+	tp = MPI_Wtime(); 
 	// realizamos las sumas locales en p1,p2,...
 	for(int i = 0; i<N; i++)
 		sum += row[i]*vector[i];
+	tp = MPI_Wtime() - tp; 
 
 	// Gather p0 almacena las sumas locales en el array X
 	t3 = MPI_Wtime(); 
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
-	t3 = MPI_Wtime()-t3; 
+	t3 = MPI_Wtime() - t3; 
 
 	// Imprimir el vector x[] en p0
 	if(rank == 0)
@@ -59,6 +61,7 @@ int main(int argc, char **argv)
         printf("Tiempo Comm Bcast: %f\n",t1);
         printf("Tiempo Comm Scatter: %f\n",t2);
         printf("Tiempo Comm Gather: %f\n",t3);
+        printf("Tiempo en paralelo: %f\n",tp);
 	}
 
 	MPI_Finalize();
