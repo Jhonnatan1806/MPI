@@ -35,10 +35,13 @@ int main(int argc, char **argv)
 	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// realizamos suma en cada proceso
+	printf("Rank %d:\n",rank);
 	for(int i = 0; i<N; i++)
+	{
 		sum += row[i]*vector[i];
+		printf("suma: %d\n",sum);
 
-	printf("suma: %d\n",sum);
+	}
 
 	// Gather
 	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
