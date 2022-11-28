@@ -28,13 +28,13 @@ int main(int argc, char **argv)
 			vector[i] = rand()%4 +1;
 	}
 
-	// Broadcast
+	// Broadcast p0 envia el vector v a p1,p2,...
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
 
-	// Scatter 
+	// Scatter p0 envia las filas de A a p1,p2,... 
 	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
 
-	// realizamos suma en cada proceso
+	// realizamos las sumas locales en p1,p2,...
 	printf("Rank %d: ",rank);
 	for(int i = 0; i<N; i++)
 	{
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	}
 	printf(" = %d\n",sum);
 
-	// Gather
+	// Gather p0 almacena las sumas locales en el array X
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 
 	MPI_Finalize();
