@@ -20,24 +20,12 @@ int main(int argc, char **argv)
 	{
 		srand(time(NULL));
 		// obtenemos los valores de A
-		printf("Matriz A\n");
 		for(int i = 0; i<N; i++)
-		{
 			for(int j = 0; j<N; j++)
-			{
 				A[i][j] = rand()%64 + 1;
-				printf("%d ", A[i][j]);
-			}
-			printf("\n");
-		}
 		// obtenemos los valores de v
-		printf("Vector v\n");
 		for(int i = 0; i<N; i++)
-		{
 			vector[i] = rand()%4 +1;
-			printf("%d ", vector[i]);
-		}
-		printf("\n");
 	}
 
 	// Broadcast
@@ -47,8 +35,15 @@ int main(int argc, char **argv)
 	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// realizamos suma en cada proceso
+	printf("Rank %d: ",rank);
 	for(int i = 0; i<N; i++)
+	{
 		sum += row[i]*vector[i];
+		if (i != 0)
+			printf("+");
+		printf("(%d)(%d)",row[i],vector[i])
+	}
+	printf(" = %d\n: ",sum);
 
 	// Gather
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
