@@ -18,18 +18,14 @@ int main(int argc, char **argv)
 	
 	if(rank == 0)
 	{
+		srand(time(NULL));
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 		// obtenemos los valores de A
-		srand(time(NULL));
 		for(int i = 0; i<N; i++)
 			for(int j = 0; j<N; j++)
 				A[i][j] = i+j;//rand()%64 + 1;
-		printf("Vector\n");
-		for(int i = 0; i<N; i++)
-			printf("%d ", vector[i]);
-		printf("\n");
 	}
 
 	// Broadcast
