@@ -13,7 +13,8 @@ int main(int argc, char **argv)
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	
-	int A[N][N], vector[N], row[N], sum[N];
+	int A[N][N], vector[N], row[N], x[N];
+	int sum;
 	
 	if(rank == 0)
 	{
@@ -25,7 +26,23 @@ int main(int argc, char **argv)
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
-		// temporal
+	}
+
+	// Scatter 
+	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
+
+	// Broadcast
+	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
+
+	// realizamos suma en cada proceso
+	for(int i = 0; i<N; i++)
+		sum += row[i]*vector[i];
+
+	// Gather
+	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
+
+	if(rank == 0)
+	{
 		printf("Matriz A\n");
 		for(int i = 0; i<N; i++)
 			{
@@ -37,25 +54,11 @@ int main(int argc, char **argv)
 		for(int i = 0; i<N; i++)
 			printf("%d ", vector[i]);
 		printf("\n");
+		printf("AxVector\n");
+		for(int i = 0; i<N; i++)
+			printf("%d ", x[i]);
+		printf("\n");
 	}
-
-	// Scatter 
-	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
-
-	// Broadcast
-	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
-
-	//for(int i = 0; i<N; i++)
-		//sum[i] += row[i]*vector[i];
-
-	printf("Rank %d: ", rank);
-	for(int i = 0; i<N; i++)
-		printf("%d ", row[i]);
-	printf("\n");
-
-	// recibe el vector suma
-	//MPI_Gather(&sum,N,MPI_INT,B,N,MPI_INT,0,MPI_COMM_WORLD);
-
 
 	MPI_Finalize();
 }
