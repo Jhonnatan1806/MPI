@@ -1,8 +1,6 @@
 # include <iostream>
 # include <mpi.h>
 # include <stdio.h>
-# include <stdlib.h>
-# include <time.h>
 
 int main(int argc, char **argv) 
 {
@@ -11,9 +9,9 @@ int main(int argc, char **argv)
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
-
-	const int N = size;
 	
+	const int N = size;
+
 	int A[N][N], vector[N], row[N], x[N];
 	int sum=0;
 	
@@ -46,8 +44,8 @@ int main(int argc, char **argv)
 	if(rank == 0)
 	{
 		printf("x = [ ");
-		for (int i : x)
-        	printf("%d ", i);
+		for (int i = 0; i<N; i++)
+        	printf("%d ", x[i]);
         printf("]\n");
 	}
 
