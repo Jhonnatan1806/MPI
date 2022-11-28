@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 		sum += row[i]*vector[i];
 		if (i != 0)
 			printf("+");
-		printf("(%d)(%d)",row[i],vector[i])
+		printf("(%d)(%d)",row[i],vector[i]);
 	}
 	printf(" = %d\n: ",sum);
 
