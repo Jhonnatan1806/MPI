@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	
 	int A[N][N], vector[N], row[N], x[N];
-	int sum;
+	int sum=0;
 	
 	if(rank == 0)
 	{
