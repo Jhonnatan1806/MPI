@@ -13,27 +13,31 @@ int main(int argc, char **argv)
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	
-	int A[N*N], B[N][N], vector[N], row[N], sum[N];
+	int A[N][N], vector[N], row[N], sum[N];
 	
 	if(rank == 0)
 	{
 		// obtenemos los valores de A
 		srand(time(NULL));
 		for(int i = 0; i<N*N; i++)
-			A[i] = rand()%64 + 1;
+			for(int j = 0; j<N; j++)
+				A[i][j] = j;//rand()%64 + 1;
 		// obtenemos los valores de v
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 	}
 
 	// enviar datos del array A tomados de N en N
-	MPI_Scatter(&A,N,MPI_INT,row,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Scatter(&A,N,MPI_INT,&row,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	// enviar datos del vector
 	MPI_Bcast(&vector,N,MPI_INT,0,MPI_COMM_WORLD);
 
-	for(int i = 0; i<N; i++)
-		sum[i] += row[i]*vector[i];
+	//for(int i = 0; i<N; i++)
+		//sum[i] += row[i]*vector[i];
+
+	for(int i = 0; i<N*N; i++)
+		printf("%d\n", row[i]);
 
 	// recibe el vector suma
 	//MPI_Gather(&sum,N,MPI_INT,B,N,MPI_INT,0,MPI_COMM_WORLD);
