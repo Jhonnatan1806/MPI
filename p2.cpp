@@ -37,14 +37,10 @@ int main(int argc, char **argv)
 	// realizamos suma en cada proceso
 	printf("Rank %d:\n",rank);
 	for(int i = 0; i<N; i++)
-	{
 		sum += row[i]*vector[i];
-		printf("suma: %d, de %d * %d\n",sum,row[i],vector[i]);
-
-	}
 
 	// Gather
-	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 
 	if(rank == 0)
 	{
@@ -55,11 +51,11 @@ int main(int argc, char **argv)
 				printf("%d ", A[i][j]);
 			printf("\n");
 			}
-		printf("Vector\n");
+		printf("Vector v\n");
 		for(int i = 0; i<N; i++)
 			printf("%d ", vector[i]);
 		printf("\n");
-		printf("AxVector\n");
+		printf("A.v\n");
 		for(int i = 0; i<N; i++)
 			printf("%d ", x[i]);
 		printf("\n");
