@@ -36,8 +36,9 @@ int main(int argc, char **argv)
 	//for(int i = 0; i<N; i++)
 		//sum[i] += row[i]*vector[i];
 
-	for(int i = 0; i<N*N; i++)
-		printf("%d\n", row[i]);
+	for(int i = 0; i<N; i++)
+		printf("%d ", row[i]);
+	printf("\n");
 
 	// recibe el vector suma
 	//MPI_Gather(&sum,N,MPI_INT,B,N,MPI_INT,0,MPI_COMM_WORLD);
