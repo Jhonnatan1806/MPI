@@ -48,13 +48,5 @@ int main(int argc, char **argv)
 	// Gather
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 
-	if(rank == 0)
-	{
-		printf("A.v: ");
-		for(int i = 0; i<N; i++)
-			printf("%d ", x[i]);
-		printf("\n");
-	}
-
 	MPI_Finalize();
 }
