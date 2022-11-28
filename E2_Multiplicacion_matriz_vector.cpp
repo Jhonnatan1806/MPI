@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <time.h>
 
-# define N 32
+# define N 48 // multiplo de p = 2 , 4 y 6
 
 int main(int argc, char **argv) 
 {
