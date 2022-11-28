@@ -43,14 +43,14 @@ int main(int argc, char **argv)
 			printf("+");
 		printf("(%d)(%d)",row[i],vector[i]);
 	}
-	printf(" = %d\n: ",sum);
+	printf(" = %d\n",sum);
 
 	// Gather
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 
 	if(rank == 0)
 	{
-		printf("A.v\n");
+		printf("A.v: ");
 		for(int i = 0; i<N; i++)
 			printf("%d ", x[i]);
 		printf("\n");
