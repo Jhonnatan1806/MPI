@@ -3,7 +3,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
-# define N 4
 
 int main(int argc, char **argv) 
 {
@@ -12,6 +11,8 @@ int main(int argc, char **argv)
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+	const int N = size;
 	
 	int A[N][N], vector[N], row[N], x[N];
 	int sum=0;
@@ -41,12 +42,13 @@ int main(int argc, char **argv)
 	// Gather p0 almacena las sumas locales en el array X
 	MPI_Gather(&sum,1,MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 
+	// Imprimir el vector x[] en p0
 	if(rank == 0)
 	{
-		printf("x = ( ");
+		printf("x = [ ");
 		for (int i : x)
         	printf("%d ", i);
-        printf(")\n");
+        printf("]\n");
 	}
 
 	MPI_Finalize();
