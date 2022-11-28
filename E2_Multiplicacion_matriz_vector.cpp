@@ -69,7 +69,7 @@ int main(int argc, char **argv)
         printf("Tiempo Comm Bcast: %f\n",t1);
         printf("Tiempo Comm Scatter: %f\n",t2);
         printf("Tiempo Comm Gather: %f\n",t3);
-        printf("Tiempo en paralelo: %f\n",tp);
+        printf("Tiempo en paralelo: %f\n",tp1+tp2);
 	}
 
 	MPI_Finalize();
