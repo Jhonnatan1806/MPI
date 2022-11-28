@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 		sum += row[i]*vector[i];
 
 	// Gather
-	MPI_Gather(&sum,1,MPI_INT,&x,N,MPI_INT,0,MPI_COMM_WORLD);
+	MPI_Gather(&sum,1,MPI_INT,x,N,MPI_INT,0,MPI_COMM_WORLD);
 
 	if(rank == 0)
 	{
