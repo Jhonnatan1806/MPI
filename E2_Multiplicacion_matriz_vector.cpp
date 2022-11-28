@@ -46,21 +46,21 @@ int main(int argc, char **argv)
 	// realizamos las sumas locales en p1,p2,...
 	for(int i = 0; i<(N/size); i++)
 		for(int j = 0; j<N; j++)
-			sum[i] += row[i][j]*vector[j];
+			{sum[i] += row[i][j]*vector[j];printf("sum %d:",sum[i]);}
 	tp = MPI_Wtime() - tp; 
 
 	// Gather p0 almacena las sumas locales en el array X
 	t3 = MPI_Wtime(); 
-	MPI_Gather(&sum,(N/size),MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
+	//MPI_Gather(&sum,(N/size),MPI_INT,x,1,MPI_INT,0,MPI_COMM_WORLD);
 	t3 = MPI_Wtime() - t3; 
 
 	// Imprimir el vector x[] en p0
 	if(rank == 0)
 	{
-		printf("x = [ ");
+		/*printf("x = [ ");
 		for (int i = 0; i<N; i++)
         	printf("%d ", x[i]);
-        printf("]\n");
+        printf("]\n");*/
         printf("Tiempo Comm Bcast: %f\n",t1);
         printf("Tiempo Comm Scatter: %f\n",t2);
         printf("Tiempo Comm Gather: %f\n",t3);
