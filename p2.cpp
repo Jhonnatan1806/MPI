@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 	for(int i = 0; i<N; i++)
 	{
 		sum += row[i]*vector[i];
-		printf("suma: %d\n",sum);
+		printf("suma: %d, de %d * %d\n",sum,row[i],vector[i]);
 
 	}
 
