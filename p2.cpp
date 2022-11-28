@@ -28,9 +28,10 @@ int main(int argc, char **argv)
 				A[i][j] = rand()%64 + 1;
 				printf("%d ", A[i][j]);
 			}
+			printf("\n");
 		}
 		// obtenemos los valores de v
-		printf("\nVector v\n");
+		printf("Vector v\n");
 		for(int i = 0; i<N; i++)
 		{
 			vector[i] = rand()%4 +1;
