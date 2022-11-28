@@ -56,9 +56,9 @@ int main(int argc, char **argv)
 		for (int i = 0; i<N; i++)
         	printf("%d ", x[i]);
         printf("]\n");
-        printf("Tiempo Comm Bcast: %f\n",t1/REP);
-        printf("Tiempo Comm Scatter: %f\n",t2/REP);
-        printf("Tiempo Comm Gather: %f\n",t3/REP);
+        printf("Tiempo Comm Bcast: %f\n",t1);
+        printf("Tiempo Comm Scatter: %f\n",t2);
+        printf("Tiempo Comm Gather: %f\n",t3);
 	}
 
 	MPI_Finalize();
