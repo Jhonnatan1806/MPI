@@ -45,8 +45,11 @@ int main(int argc, char **argv)
 	tp = MPI_Wtime(); 
 	// realizamos las sumas locales en p1,p2,...
 	for(int i = 0; i<(N/size); i++)
+	{
+		sum[i]=0;
 		for(int j = 0; j<N; j++)
 			{sum[i] += row[i][j]*vector[j];printf("sum %d:",sum[i]);}
+	}
 	tp = MPI_Wtime() - tp; 
 
 	// Gather p0 almacena las sumas locales en el array X
