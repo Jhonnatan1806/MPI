@@ -1,5 +1,4 @@
-Tiempos para p = 2
-
+N = cte. p = 2
 Bcast		Scatter		Gather		T. Computo
 ----------------------------------------------
 0.000012	0.000029	0.000005	0.000040
@@ -13,8 +12,7 @@ Tcomm = 0.000045
 Tparallel = 0.000085
 
 
-Tiempos para p = 4
-
+N = cte. p = 4
 Bcast		Scatter		Gather		T. Computo
 ----------------------------------------------
 0.000014	0.000038	0.000015	0.000039
@@ -27,8 +25,8 @@ Bcast		Scatter		Gather		T. Computo
 Tcomm = 0.000063
 Tparallel = 0.000103
 
-Tiempos para p = 6
 
+N = cte. p = 6
 Bcast		Scatter		Gather		T. Computo
 ----------------------------------------------
 0.000015	0.000041	0.000038	0.000039
