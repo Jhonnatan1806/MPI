@@ -5,8 +5,6 @@
 # include <math.h>
 # include <fstream>
 
-# define REP 1000
-
 int main(int argc, char **argv) 
 {
 	int rank, size;
@@ -17,8 +15,6 @@ int main(int argc, char **argv)
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	int result[size];
 
-	for(int i = 0; i<REP ;i++)
-	{
 	if (rank == 0)
 	{
 		// generamos 2 semillas aleatorias 
@@ -45,8 +41,7 @@ int main(int argc, char **argv)
 	{
 		bool equalsToPaolo = true;
 		std::fstream filestr;
-		filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
-		
+		filestr.open("E3_Adivina_mi_numero_MPI.csv", std::fstream::out | std::fstream::app);
 		printf("Paolo penso en el numero %d\n",result[0]);
 		filestr<<result[0]<<",";
 		for (int i = 1; i<size; i++)
@@ -67,6 +62,5 @@ int main(int argc, char **argv)
 		filestr.close();
 	}
 
-	}
 	MPI_Finalize();
 }
