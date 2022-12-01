@@ -41,22 +41,26 @@ int main(int argc, char **argv)
 	if ( rank == 0 )
 	{
 		bool equalsToPaolo = true;
+		std::fstream filestr;
+		filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
+		
 		printf("Paolo penso en el numero %d\n",result[0]);
+		filestr<<result[0]<<",";
 		for (int i = 1; i<size; i++)
 		{
 			if(result[0] != result[i])
 				equalsToPaolo = false;
 			printf("El amigo %d penso en el numero %d\n",i,result[i]);
+			if(size-i != 1)
+				filestr<<result[i]<<",";
+			else
+				filestr<<result[i]<<"\n";
 		}
 		// verificamos si todos los resultados son iguales
 		if (equalsToPaolo)
 			printf("Los amigos de Paolo pensaron en el mismo numero que el\n");
 		else
 			printf("Los amigos de Paolo no pensaron en el mismo numero que el\n");
-
-		std::fstream filestr;
-		filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
-		filestr<<"test1\n";
 		filestr.close();
 	}
 	
