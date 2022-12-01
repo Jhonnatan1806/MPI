@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 		for(int i = 0; i<N; i++)
 			vector[i] = rand()%4 +1;
 	}
-	tp1 = MPI_Wtime() - tp1;
+	tp1 = MPI_Wtime() - tp1; 
 
 	// Broadcast p0 envia el vector v hacia p1,p2,...
 	t1 = MPI_Wtime();
