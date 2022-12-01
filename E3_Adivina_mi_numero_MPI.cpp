@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 	std::fstream filestr;
 
-	filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app)
+	filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
 	filestr<<"test\n";
 
 	MPI_Init(&argc, &argv);
