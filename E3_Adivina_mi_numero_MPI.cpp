@@ -11,18 +11,18 @@ int main(int argc, char **argv)
 {
 	int rank, size;
 	int seeds[2];
-	int result[size];
 
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
+	int result[size];
 
 	for(int i = 0; i<REP ;i++)
 	{
 	if (rank == 0)
 	{
 		// generamos 2 semillas aleatorias 
-		srand(time(NULL)+(i*i));
+		srand(time(NULL)+(i*i)+1);
 		seeds[0] = rand()%20 + 1;
 		seeds[1] = rand()%size + 1; 
 	}
