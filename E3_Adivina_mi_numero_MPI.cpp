@@ -13,12 +13,12 @@ int main(int argc, char **argv)
 	int seeds[2];
 	int result[size];
 
-	for(int i = 0; i<3 ;i++)
-	{
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
-	
+
+	for(int i = 0; i<3 ;i++)
+	{
 	if (rank == 0)
 	{
 		// generamos 2 semillas aleatorias 
@@ -66,8 +66,7 @@ int main(int argc, char **argv)
 			printf("Los amigos de Paolo no pensaron en el mismo numero que el\n");
 		filestr.close();
 	}
-	
-	MPI_Finalize();
 
 	}
+	MPI_Finalize();
 }
