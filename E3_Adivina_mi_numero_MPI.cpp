@@ -11,10 +11,6 @@ int main(int argc, char **argv)
 	int seeds[2];
 	int result[size];
 
-	std::fstream filestr;
-
-	filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
-
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -57,10 +53,14 @@ int main(int argc, char **argv)
 			printf("Los amigos de Paolo pensaron en el mismo numero que el\n");
 		else
 			printf("Los amigos de Paolo no pensaron en el mismo numero que el\n");
+
+		std::fstream filestr;
+		filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app);
+		filestr<<"test1\n";
+		filestr.close();
 	}
 	
 	MPI_Finalize();
 
-	filestr<<"test\n";
-	filestr.close();
+	
 }
