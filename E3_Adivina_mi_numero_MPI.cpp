@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	if (rank == 0)
 	{
 		// generamos 2 semillas aleatorias 
-		srand(i*i+1);
+		srand(time(NULL)+(i*i));
 		seeds[0] = rand()%20 + 1;
 		seeds[1] = rand()%size + 1; 
 	}
