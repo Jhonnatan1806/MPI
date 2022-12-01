@@ -3,15 +3,23 @@
 # include <stdlib.h>
 # include <time.h>
 # include <math.h>
+# include <fstream>
 
 int main(int argc, char **argv) 
 {
 	int rank, size;
+	int seeds[2];
+	int result[size];
+
+	std::fstream filestr;
+
+	filestr.open("E3_Adivina_mi_numero_MPI.txt", std::fstream::out | std::fstream::app)
+	filestr<<"test\n";
+
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
-	int seeds[2];
-	int result[size];
+	
 	
 	if (rank == 0)
 	{
